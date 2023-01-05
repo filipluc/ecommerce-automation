@@ -4,12 +4,16 @@ import pytest
 import utilities.custom_logger as cl
 import logging
 from utilities.util import Util
+from utilities.read_config import ReadConfig
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
 class CreateAccountTests(unittest.TestCase):
     log = cl.customLogger(logging.DEBUG)
     util = Util()
     random_user_name = util.getUniqueName() + "@yahoo.com"
+    first_name = ReadConfig.getFirstName()
+    last_name = ReadConfig.getLastName()
+    password = ReadConfig.getLoginPassword()
 
     @pytest.fixture(autouse=True)
     def objectSetup(self, oneTimeSetUp):
@@ -17,6 +21,6 @@ class CreateAccountTests(unittest.TestCase):
 
     @pytest.mark.smoke
     def test_validCreateAccount(self):
-        self.cap.createAccount("f1", "l1", self.random_user_name, "Magento_999", "Magento_999")
+        self.cap.createAccount(self.first_name, self.last_name, self.random_user_name, self.password, self.password)
         result = self.cap.verifyAccountCreationSuccessful()
         assert result == True

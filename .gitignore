@@ -132,3 +132,4 @@ dmypy.json
 *.pyc
 /assets
 *.html
+tests/assets/style.css

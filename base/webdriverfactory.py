@@ -10,7 +10,7 @@ Example:
 """
 
 from selenium import webdriver
-
+from utilities.read_config import ReadConfig
 
 class WebDriverFactory:
 
@@ -38,7 +38,7 @@ class WebDriverFactory:
         Returns:
             'WebDriver Instance'
         """
-        baseURL = "https://magento.softwaretestingboard.com/"
+        baseURL = ReadConfig.getURL()
         if self.browser == "iexplorer":
             driver = webdriver.Ie()
         elif self.browser == "firefox":
