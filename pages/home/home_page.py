@@ -26,8 +26,8 @@ class HomePage(BasePage):
     def navigateToSignIn(self):
         self.elementClick(locator=self._sign_in, locatorType="xpath")
 
-    def isDisplayedWelcomeMsg(self):
-        self.isElementDisplayed(locator=self._default_welcome_msg, locatorType="xpath")
+    def isDisplayedSignIn(self):
+        self.isElementDisplayed(locator=self._sign_in, locatorType="xpath")
 
     def navigateToLinkWhatIsNew(self):
         self.elementClick(locator=self._link_what_is_new, locatorType="link")
@@ -37,3 +37,17 @@ class HomePage(BasePage):
 
     def navigateToLinkWomenTops(self):
         self.elementClick(locator=self._link_women_tops, locatorType="link")
+
+    def verifyWelcomeMsg(self):
+        self.waitForElement(self._default_welcome_msg,
+                                locatorType="xpath")
+        result = self.isElementDisplayed(locator=self._default_welcome_msg,
+                                             locatorType="xpath")
+        return result
+
+    def verifySignInDisplayed(self):
+        self.waitForElement(self._sign_in,
+                                locatorType="xpath")
+        result = self.isElementDisplayed(locator=self._sign_in,
+                                             locatorType="xpath")
+        return result
