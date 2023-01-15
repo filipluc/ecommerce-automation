@@ -1,6 +1,6 @@
 import unittest
-from tests.home.create_account_tests import CreateAccountTests
-from tests.home.login_tests import LoginTests
+from tests.home.create_account_test import CreateAccountTests
+from tests.home.login_test import LoginTests
 
 
 # Get all tests from the test classes

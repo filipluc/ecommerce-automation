@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from traceback import print_stack
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains
 from selenium.common.exceptions import *
 import utilities.custom_logger as cl
 import logging
@@ -15,6 +16,7 @@ class SeleniumDriver:
 
     def __init__(self, driver):
         self.driver = driver
+        self.action = ActionChains(driver)
 
     def screenshot(self, resultMessage):
         """
@@ -84,6 +86,33 @@ class SeleniumDriver:
                           " and locatorType: " + locatorType)
         return element
 
+    def getURL(self):
+        """
+        Get URL of the current page
+        """
+        get_URL = self.driver.current_url
+        self.log.info("Current URL is: " + get_URL)
+        return get_URL
+
+    def compareURL(self, url):
+        """
+        Compare the input URL with the Current URL
+        """
+        try:
+            if url:
+                if url == self.getURL():
+                    self.log.info("URL is ok!")
+                    return True
+                else:
+                    self.log.info("URL is not ok!")
+                    return False
+            else:
+                self.log.info("Provided URL is empty!")
+        except:
+            self.log.info("There was a problem with the current URL!")
+            print_stack()
+
+
     def elementClick(self, locator="", locatorType="id", element=None):
         """
         Click on an element
@@ -97,6 +126,22 @@ class SeleniumDriver:
                           " locatorType: " + locatorType)
         except:
             self.log.info("Cannot click on the element with locator: " + locator +
+                          " locatorType: " + locatorType)
+            print_stack()
+
+    def elementHover(self, locator="", locatorType="id", element=None):
+        """
+        Hover over an element
+        Either provide element or a combination of locator and locatorType
+        """
+        try:
+            if locator:  # This means if locator is not empty
+                element = self.getElement(locator, locatorType)
+            self.action.move_to_element(element).perform()
+            self.log.info("Hovered over element with locator: " + locator +
+                          " locatorType: " + locatorType)
+        except:
+            self.log.info("Cannot hover over the element with locator: " + locator +
                           " locatorType: " + locatorType)
             print_stack()
 
