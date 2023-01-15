@@ -12,6 +12,7 @@ class WomenBottomsPantsTests(unittest.TestCase):
     def objectSetup(self, oneTimeSetUp):
         self.hp = HomePage(self.driver)
 
+    @pytest.mark.menu
     def test_womenBottomsPants(self):
         self.hp.navigateToLinkWomenBottomsPants()
         result = self.hp.verifyWomenBottomsPantsURL()
