@@ -69,6 +69,30 @@ class SeleniumDriver:
                           " and  locatorType: " + locatorType)
         return element
 
+    def getValueForAttribute(self, attribute, locator, locatorType="id"):
+        attribute_value = None
+        try:
+            element = self.getElement(locator, locatorType)
+            attribute_value = element.get_attribute(attribute)
+            self.log.info("For locator: " + locator + " and  attribute: " + attribute +
+                          ", this value was found: " + attribute_value)
+        except:
+            self.log.info("Element not found with locator: " + locator +
+                          " and  locatorType: " + locatorType + ", or there is no attribute " + attribute)
+        return attribute_value
+
+    def getElementText(self, locator, locatorType="id"):
+        element_text = None
+        try:
+            element = self.getElement(locator, locatorType)
+            element_text = element.text
+            self.log.info("For locator: " + locator +
+                          ", this text was found: " + element_text)
+        except:
+            self.log.info("Element not found with locator: " + locator +
+                          " and  locatorType: " + locatorType)
+        return element_text.strip()
+
     def getElementList(self, locator, locatorType="id"):
         """
         NEW METHOD

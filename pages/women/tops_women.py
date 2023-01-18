@@ -18,6 +18,7 @@ class WomenTopsPage(BasePage):
     _tops_women_category_filter_label = "//li//span[@class='filter-label' and contains(text(), 'Category')]"
     _tops_women_category_filter_value_jackets = "//li//span[@class='filter-value' and contains(text(), 'Jackets')]"
     _tops_women_filter_clear_all = "//span[contains(text(), 'Clear All')]//parent::a[contains(@href, 'https://magento.softwaretestingboard.com/women/tops-women.html')]"
+    _first_item_in_list = "//div//ol//li[@class='item product product-item'][1]//a[contains(@class, 'product-item-link')]"
 
 
     def navigateToTopsWomenCategoryLink(self):
@@ -44,3 +45,10 @@ class WomenTopsPage(BasePage):
 
     def clickTopsWomenFilterClearAll(self):
         self.elementClick(locator=self._tops_women_filter_clear_all, locatorType="xpath")
+
+    def clickFirstItemInList(self):
+        self.elementClick(locator=self._first_item_in_list, locatorType="xpath")
+
+    def getValueForAttributeClassForItem(self):
+        result = self.getValueForAttribute("href", locator=self._first_item_in_list, locatorType="xpath")
+        return result
