@@ -10,7 +10,7 @@ import logging
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
-class TopsWomenLeftMenuTests(unittest.TestCase):
+class AddItemToCartTests(unittest.TestCase):
     log = cl.customLogger(logging.DEBUG)
 
     @pytest.fixture(autouse=True)
