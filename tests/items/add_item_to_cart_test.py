@@ -5,8 +5,8 @@ from pages.items.shopping_cart_page import ShoppingCartPage
 import unittest
 import pytest
 import utilities.custom_logger as cl
+from utilities.util import Util
 import logging
-import time
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
@@ -66,5 +66,9 @@ class TopsWomenLeftMenuTests(unittest.TestCase):
         # get the item quantity and compare
         item_qty_2 = self.shopping_cart.getValueForAttributeValueForItemQty()
         assert item_qty_1 == item_qty_2
+
+        # get the item subtotal and assert if it is calculated correctly
+        item_subtotal = self.shopping_cart.getTextForItemSubtotal()
+        assert Util.calculate_subtotal_price(self, item_price_2, item_qty_2) == item_subtotal
 
 

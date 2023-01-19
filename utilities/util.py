@@ -132,3 +132,12 @@ class Util(object):
                 return False
         else:
             return True
+
+    @staticmethod
+    def calculate_subtotal_price(self, price, qty):
+        if str(price)[0] == "$":
+            price = price.lstrip("$")
+        price = float(price)
+        calc_subtotal = price * int(qty)
+        subtotal = "$" + "{:.2f}".format(calc_subtotal)
+        return subtotal

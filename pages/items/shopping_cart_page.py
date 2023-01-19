@@ -15,6 +15,7 @@ class ShoppingCartPage(BasePage):
     _item_quantity = "//input[contains(@id, 'qty') and contains(@title, 'Qty')]"
     _item_size = "//dl[@class='item-options']//dd[1]"
     _item_color = "//dl[@class='item-options']//dd[2]"
+    _item_subtotal = "//td[@data-th='Subtotal']//span[@class='price']"
 
     def getTextForItemPrice(self):
         result = self.getElementText(locator=self._item_price, locatorType="xpath")
@@ -30,5 +31,9 @@ class ShoppingCartPage(BasePage):
 
     def getTextForItemColor(self):
         result = self.getElementText(locator=self._item_color, locatorType="xpath")
+        return result
+
+    def getTextForItemSubtotal(self):
+        result = self.getElementText(locator=self._item_subtotal, locatorType="xpath")
         return result
 
