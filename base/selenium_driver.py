@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from traceback import print_stack
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -178,12 +179,15 @@ class SeleniumDriver:
             if locator:  # This means if locator is not empty
                 element = self.getElement(locator, locatorType)
             element.send_keys(data)
-            self.log.info("Sent data on element with locator: " + locator +
+            if data == "key_Enter":
+                element.send_keys(Keys.ENTER)
+            self.log.info("Sent " + data + "on element with locator: " + locator +
                           " locatorType: " + locatorType)
         except:
             self.log.info("Cannot send data on the element with locator: " + locator +
                   " locatorType: " + locatorType)
             print_stack()
+
 
     def clearField(self, locator="", locatorType="id"):
         """
