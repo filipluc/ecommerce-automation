@@ -16,6 +16,8 @@ class ShoppingCartPage(BasePage):
     _item_size = "//dl[@class='item-options']//dd[1]"
     _item_color = "//dl[@class='item-options']//dd[2]"
     _item_subtotal = "//td[@data-th='Subtotal']//span[@class='price']"
+    _button_proceed_to_checkout = "//button[contains(@data-role, 'proceed-to-checkout')]"
+
 
     def getTextForItemPrice(self):
         result = self.getElementText(locator=self._item_price, locatorType="xpath")
@@ -37,3 +39,6 @@ class ShoppingCartPage(BasePage):
         result = self.getElementText(locator=self._item_subtotal, locatorType="xpath")
         return result
 
+    def clickProceedToCheckout(self):
+        self.waitForElement(locator=self._button_proceed_to_checkout, locatorType="xpath")
+        self.elementClick(locator=self._button_proceed_to_checkout, locatorType="xpath")

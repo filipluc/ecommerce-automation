@@ -36,3 +36,28 @@ class ReadConfig:
     def getLastName():
         last_name = config.get('common', 'last_name')
         return last_name
+
+    @staticmethod
+    def getAddress():
+        address = config.get('shipping', 'address')
+        return address
+
+    @staticmethod
+    def getCity():
+        city = config.get('shipping', 'city')
+        return city
+
+    @staticmethod
+    def getState():
+        state = config.get('shipping', 'state')
+        return state
+
+    @staticmethod
+    def getPostcode():
+        postcode = config.get('shipping', 'postcode')
+        return postcode
+
+    @staticmethod
+    def getTelephone():
+        telephone = config.get('shipping', 'telephone')
+        return telephone
